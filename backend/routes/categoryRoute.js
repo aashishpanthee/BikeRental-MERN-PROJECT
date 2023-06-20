@@ -30,7 +30,7 @@ router.put(
 );
 
 // get all categories
-router.get("/all", requireSignIn, isAdmin, getAllCategoriesController);
+router.get("/all", getAllCategoriesController);
 
 // get single category by slug
 router.get("/single-category/:slug", getSingleCategoryController);

@@ -8,6 +8,9 @@ import {
   deleteBikeController,
   updateBikeController,
   getSingleBikeControllerById,
+  bikeFilterController,
+  // bikeCountController,
+  // bikeListController,
 } from "../controllers/bikeController.js";
 import formidable from "express-formidable";
 
@@ -52,5 +55,14 @@ router.delete(
 
 // get bike photo
 router.get("/bike-photo/:bid", bikePhotoController);
+
+// filter bikes
+router.post("/filter-bikes", bikeFilterController);
+
+// bikes count
+// router.get("/bikes-count", bikeCountController);
+
+// bike per page
+// router.get("/bike-list/:page", bikeListController);
 
 export default router;

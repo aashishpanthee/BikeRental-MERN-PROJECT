@@ -9,7 +9,6 @@ export const addCategory = createAsyncThunk(
         "/api/v1/category/create-category",
         categoryData
       );
-      console.log(data.data);
       return data.data.category;
     } catch (error) {
       console.log(error);
@@ -26,7 +25,6 @@ export const CategoryAll = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const data = await Http.get("/api/v1/category/all");
-      console.log(data.data.categories);
       return data.data.categories;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -43,7 +41,6 @@ export const getCategoryBySlug = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const data = await Http.get(`/api/v1/category/single-category/${id}`);
-      console.log(data.data);
       return data.data.category;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -93,7 +90,6 @@ export const deleteCategory = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const data = await Http.delete(`/api/v1/category/delete-category/${id}`);
-      console.log(data.data);
       return data.data;
     } catch (error) {
       if (error.response && error.response.data.message) {

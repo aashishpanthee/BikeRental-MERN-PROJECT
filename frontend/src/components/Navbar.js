@@ -120,20 +120,25 @@ export default function Navbar({ scrolled }) {
                     >
                       <Menu.Items className='absolute right-0 z-10 w-48 mt-2 origin-top-right divide-y divide-gray-300 rounded-md shadow-lg bg-gray-50 ring-1 ring-black ring-opacity-5 focus:outline-none'>
                         <div className='px-1 py-1 '>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                to='/dashboard'
-                                className={`${
-                                  active
-                                    ? "bg-orange text-white"
-                                    : "text-gray-900"
-                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                              >
-                                Dashboard
-                              </Link>
-                            )}
-                          </Menu.Item>
+                          {userInfo.role === 1 ? (
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to='/dashboard'
+                                  className={`${
+                                    active
+                                      ? "bg-orange text-white"
+                                      : "text-gray-900"
+                                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                >
+                                  Dashboard
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          ) : (
+                            <></>
+                          )}
+
                           <Menu.Item>
                             {({ active }) => (
                               <Link

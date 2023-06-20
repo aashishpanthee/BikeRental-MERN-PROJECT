@@ -69,7 +69,7 @@ export const getBikeAllController = async (req, res) => {
       .find({})
       .populate("category")
       .select("-photo")
-      .limit(12)
+      .limit(10)
       .sort({ createdAt: -1 });
     res.status(200).send({
       success: true,
@@ -210,3 +210,73 @@ export const bikePhotoController = async (req, res) => {
     });
   }
 };
+
+// bikefilter controller
+export const bikeFilterController = async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+    let args = {};
+    if (checked.length > 0) args.category = checked;
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+    const bikes = await bikeModel
+      .find(args)
+      .populate("category")
+      .select("-photo");
+    res.status(200).send({
+      success: true,
+      message: "Successfully fetched filtered bikes",
+      bikes,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while filtering bikes",
+      error,
+    });
+  }
+};
+
+// bike count
+// export const bikeCountController = async (req, res) => {
+//   try {
+//     const total = await bikeModel.find({}).estimatedDocumentCount();
+//     res.status(200).send({
+//       success: true,
+//       total,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "Something went wrong",
+//       error,
+//     });
+//   }
+// };
+
+// bike per page
+// export const bikeListController = async (req, res) => {
+//   try {
+//     const perPage = 8;
+//     const page = req.params.page ? req.params.page : 1;
+//     const bikes = await bikeModel
+//       .find({})
+//       .select("-photo")
+//       .skip((page - 1) * perPage)
+//       .limit(perPage)
+//       .sort({ createdAt: -1 });
+//     res.status(200).send({
+//       success: true,
+//       message: "Successfully fetched products per page",
+//       bikes,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).send({
+//       success: false,
+//       message: "Error in fetching per page",
+//       error,
+//     });
+//   }
+// };

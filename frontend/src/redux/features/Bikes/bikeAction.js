@@ -6,7 +6,6 @@ export const addBike = createAsyncThunk(
   async (bikesData, { rejectWithValue }) => {
     try {
       const data = await Http.post("/api/v1/bike/add-bike", bikesData);
-      console.log(data.data, "from bike action adding bike");
       return data.data;
     } catch (error) {
       console.log(error);
@@ -23,7 +22,6 @@ export const BikeAll = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const data = await Http.get("/api/v1/bike/all");
-      console.log(data.data.bikes);
       return data.data.bikes;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -55,7 +53,6 @@ export const getBikeById = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const data = await Http.get(`/api/v1/bike/single-bike/read/${id}`);
-      console.log(data.data, "from bike action");
       return data.data.bike;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -91,6 +88,59 @@ export const deleteBike = createAsyncThunk(
     try {
       const data = await Http.delete(`/api/v1/bike/delete-bike/${id}`);
       return data.data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+// filter bikes
+export const FilterBikes = createAsyncThunk(
+  "bike/filter",
+  async (data, { rejectWithValue }) => {
+    try {
+      console.log(data, "from coming value frontend");
+      const response = await Http.post(`/api/v1/bike/filter-bikes`, data);
+      console.log(response.data, "coming from backend");
+      return response.data.bikes;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+// bikes get totalcount
+export const getTotal = createAsyncThunk(
+  "bike/count",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await Http.get(`/api/v1/bike/bikes-count`);
+      return response.data.total;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+//get bike list per page
+export const getBikeList = createAsyncThunk(
+  "bike/list",
+  async (page, { rejectWithValue }) => {
+    try {
+      const response = await Http.get(`/api/v1/bike/bike-list/${page}`);
+      return response.data.bikes;
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);

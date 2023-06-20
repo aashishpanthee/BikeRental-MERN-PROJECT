@@ -6,6 +6,9 @@ import {
   editBikeById,
   getBikeById,
   getBikeBySlug,
+  FilterBikes,
+  // getTotal,
+  // getBikeList,
 } from "./bikeAction";
 
 const initialState = {
@@ -51,10 +54,8 @@ const bikeSlice = createSlice({
       state.error = null;
     },
     [BikeAll.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       state.bikes = action.payload;
-      state.totalbikes = action.payload.total;
     },
     [BikeAll.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -119,6 +120,49 @@ const bikeSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+
+    // filtered bikes
+    [FilterBikes.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [FilterBikes.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.bikes = action.payload;
+    },
+    [FilterBikes.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+
+    //get  the total count of bikes
+    // [getTotal.pending]: (state) => {
+    //   state.loading = true;
+    //   state.error = null;
+    // },
+    // [getTotal.fulfilled]: (state, action) => {
+    //   state.loading = false;
+    //   state.totalbikes = action.payload;
+    // },
+    // [getTotal.rejected]: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.error = payload;
+    // },
+
+    //get  the total bikes
+    // [getBikeList.pending]: (state) => {
+    //   state.loading = true;
+    //   state.error = null;
+    // },
+    // [getBikeList.fulfilled]: (state, action) => {
+    //   state.loading = false;
+    //   state.bikes = [...state.bikes, action.payload];
+    //   console.log(state.bikes, "in slice");
+    // },
+    // [getBikeList.rejected]: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.error = payload;
+    // },
   },
 });
 export const { clearFields } = bikeSlice.actions;
