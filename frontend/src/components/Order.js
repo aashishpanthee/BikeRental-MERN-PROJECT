@@ -4,16 +4,19 @@ import { Button, Modal, Space } from "antd";
 import { DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getBikeById } from "../redux/features/Bikes/bikeAction";
+import { getBikeById, getBikeBySlug } from "../redux/features/Bikes/bikeAction";
 import { useParams } from "react-router-dom";
 import Spinner from "../Helper/Spinner";
 import { AddOrder } from "../redux/features/Order/orderAction";
 import { toast } from "react-hot-toast";
 import { clearFields } from "../redux/features/Order/orderSlice";
+import Error from "../Helper/Error";
+// import { clearFields } from "../redux/features/Order/orderSlice";
 const base_url = "http://localhost:8000/";
 const { RangePicker } = DatePicker;
 const Order = () => {
-  let { id } = useParams();
+  const [error, setError] = useState("");
+  let { slug } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [from, setFrom] = useState();
@@ -21,9 +24,8 @@ const Order = () => {
   const [days, setDays] = useState(0);
   const [totalamount, setTotalAmount] = useState(0);
   const [open, setOpen] = useState(false);
-  const { bikeById } = useSelector((state) => state.bike);
   const { loading, success } = useSelector((state) => state.order);
-  // const { userInfo } = useSelector((state) => state.auth);
+  console.log(success, "success");
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -31,14 +33,15 @@ const Order = () => {
     });
   }, []);
   useEffect(() => {
-    dispatch(getBikeById(id));
-  }, [id, dispatch]);
+    dispatch(getBikeBySlug(slug));
+  }, [slug]);
 
+  const { bikeBySlug } = useSelector((state) => state.bike);
   useEffect(() => {
     if (success) {
-      navigate("/");
       toast.success("Your order has been placed");
-      console.log("success");
+      dispatch(clearFields());
+      navigate("/");
     }
   }, [success, navigate]);
   const disabledDate = (current) => {
@@ -46,18 +49,18 @@ const Order = () => {
     return current && current < moment().startOf("day");
   };
   const selectTimeSlots = (values) => {
-    let a = values[0];
-    let b = values[1].toDate();
+    let a = values[0].format("YYYY-MM-DD");
+    let b = values[1].format("YYYY-MM-DD");
     setFrom(a);
     setTo(b);
     setDays(values[1].diff(values[0], "days"));
   };
 
   useEffect(() => {
-    if (bikeById) {
-      setTotalAmount(days * bikeById.pricePerDay);
+    if (bikeBySlug) {
+      setTotalAmount(days * bikeBySlug.price);
     }
-  }, [days, bikeById]);
+  }, [days, bikeBySlug]);
   const showModal = () => {
     setOpen(true);
   };
@@ -66,11 +69,14 @@ const Order = () => {
       totalAmt: totalamount,
       startDate: from,
       endDate: to,
-      bikeId: bikeById.id,
-      // userId: userInfo.id,
+      bikeId: bikeBySlug._id,
     };
-    await dispatch(AddOrder(formData));
-    await dispatch(clearFields());
+    console.log(formData);
+    const data = await dispatch(AddOrder(formData));
+    if (data.error) {
+      setError(data.payload);
+      dispatch(clearFields());
+    }
     setOpen(false);
   };
   const hideModal = () => {
@@ -78,25 +84,26 @@ const Order = () => {
   };
   return (
     <>
-      {bikeById ? (
+      {bikeBySlug ? (
         <>
           <section className='overflow-hidden text-gray-600 body-font'>
             <div className='container px-5 py-10 mx-auto'>
               <div className='flex flex-wrap mx-auto lg:w-4/5'>
                 <img
-                  alt={bikeById.bikeName}
+                  alt={bikeBySlug.name}
                   className='object-cover object-center w-full rounded h-60 sm:h-36 lg:w-1/2 lg:h-auto'
-                  src={`${base_url}${bikeById.image}`}
+                  src={`${base_url}${bikeBySlug.image}`}
                 />
                 <div className='w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0'>
                   <h2 className='text-sm tracking-widest text-gray-500 title-font'>
                     Rent Now !!!
                   </h2>
                   <h1 className='mb-1 text-3xl font-medium text-gray-900 title-font'>
-                    {bikeById.bikeName}
+                    {bikeBySlug.name}
                   </h1>
+                  <div className='text-justify'>{bikeBySlug.description}</div>
                   <h1 className='mb-1 text-xl font-normal text-gray-900'>
-                    Rent per day :<span> Rs {bikeById.pricePerDay}</span>
+                    Rent per day :<span> Rs {bikeBySlug.price}</span>
                   </h1>
                   <div className='flex mb-4'>
                     <span className='flex items-center'>
@@ -184,6 +191,7 @@ const Order = () => {
                     >
                       Rs {totalamount}
                     </span>
+                    {error && <Error>{error}</Error>}
                     <Button
                       onClick={showModal}
                       disabled={!to && !from}

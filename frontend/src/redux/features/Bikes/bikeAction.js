@@ -34,11 +34,11 @@ export const BikeAll = createAsyncThunk(
 );
 
 export const getBikeBySlug = createAsyncThunk(
-  "bike/id",
+  "bike/slug",
   async (slug, { rejectWithValue }) => {
     try {
       const data = await Http.get(`/api/v1/bike/single-bike/${slug}`);
-      return data.data;
+      return data.data.bike;
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);

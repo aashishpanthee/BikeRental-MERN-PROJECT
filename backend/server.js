@@ -6,6 +6,7 @@ import ConnectDb from "./config/ConnectDb.js";
 import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoute.js";
 import bikeRoutes from "./routes/bikeRoute.js";
+import orderRoutes from "./routes/orderRoute.js";
 
 import cors from "cors";
 // configure env
@@ -27,6 +28,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/bike", bikeRoutes);
+app.use("/api/v1/order", orderRoutes);
 //  rest api
 app.get("/", (req, res) => {
   res.send({

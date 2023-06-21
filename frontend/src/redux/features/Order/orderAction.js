@@ -74,9 +74,9 @@ export const AddOrder = createAsyncThunk(
   "order/add/",
   async (formData, { rejectWithValue }) => {
     try {
-      const data = await Http.post("/rent/", formData);
-      console.log(data, "orderaction");
-      return data.data;
+      const data = await Http.post("/api/v1/order/make-order", formData);
+      console.log(data.data.order, "orderaction");
+      return data.data.order;
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);

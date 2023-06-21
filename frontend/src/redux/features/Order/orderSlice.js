@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
   error: null,
   success: false,
-  allOrders: [],
+  orders: [],
   orderById: null,
 };
 
@@ -42,7 +42,7 @@ const orderSlice = createSlice({
     },
     [AllOrder.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.allOrders = payload;
+      state.orders = payload;
     },
     [AllOrder.rejected]: (state, { payload }) => {
       state.loading = false;

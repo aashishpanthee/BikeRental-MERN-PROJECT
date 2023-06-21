@@ -139,7 +139,7 @@ export default function Navbar({ scrolled }) {
                             <></>
                           )}
 
-                          <Menu.Item>
+                          {/* <Menu.Item>
                             {({ active }) => (
                               <Link
                                 to='/cart'
@@ -152,7 +152,7 @@ export default function Navbar({ scrolled }) {
                                 Your cart
                               </Link>
                             )}
-                          </Menu.Item>
+                          </Menu.Item> */}
                         </div>
                         <div className='px-1 py-1'>
                           <Menu.Item>

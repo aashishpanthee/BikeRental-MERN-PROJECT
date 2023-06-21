@@ -31,6 +31,7 @@ const bikeSlice = createSlice({
       state.error = false;
       state.userById = null;
       state.bikeById = null;
+      state.bikeBySlug = null;
     },
   },
   extraReducers: {
@@ -70,6 +71,7 @@ const bikeSlice = createSlice({
     [getBikeBySlug.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.bikeBySlug = payload;
+      console.log(state.bikeBySlug, "bikeSlice slug");
     },
     [getBikeBySlug.rejected]: (state, { payload }) => {
       state.loading = false;
