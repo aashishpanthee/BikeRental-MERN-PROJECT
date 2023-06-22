@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  ShoppingBagIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { logout } from "../redux/features/User/authSlice";
+import { LoggedInUser } from "../redux/features/User/authAction";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -25,6 +22,9 @@ function classNames(...classes) {
 export default function Navbar({ scrolled }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(LoggedInUser());
+  }, []);
   const { loading, userInfo, error } = useSelector((state) => state.auth);
   // const { cartTotalQuantity } = useSelector((state) => state.cart);
   const handleLogout = () => {
@@ -138,21 +138,20 @@ export default function Navbar({ scrolled }) {
                           ) : (
                             <></>
                           )}
-
-                          {/* <Menu.Item>
+                          <Menu.Item>
                             {({ active }) => (
                               <Link
-                                to='/cart'
+                                to='/orderdropdown'
                                 className={`${
                                   active
                                     ? "bg-orange text-white"
                                     : "text-gray-900"
                                 } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                               >
-                                Your cart
+                                Your orders
                               </Link>
                             )}
-                          </Menu.Item> */}
+                          </Menu.Item>
                         </div>
                         <div className='px-1 py-1'>
                           <Menu.Item>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BikeAll,
@@ -17,6 +17,7 @@ const BikeRentSection = () => {
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -30,7 +31,7 @@ const BikeRentSection = () => {
     if (!radio.length || !checked.length) {
       dispatch(BikeAll());
     }
-  }, [!radio.length, !checked.length]);
+  }, [!radio, !checked]);
   useEffect(() => {
     if (radio.length || checked.length)
       dispatch(FilterBikes({ radio, checked }));
@@ -51,6 +52,12 @@ const BikeRentSection = () => {
     }
     setChecked(all);
   };
+  // const clearFilter = () => {
+  //   console.log("hello");
+  //   setChecked([]);
+  //   setRadio([]);
+  //   navigate("/bikerentsection");
+  // };
 
   return (
     <Layout title={"Bike rental made easy"}>

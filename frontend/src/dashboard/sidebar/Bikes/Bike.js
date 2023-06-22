@@ -8,6 +8,7 @@ const Bike = () => {
       title='Total Bikes'
       addlink='/dashboard/bikes/add'
       addTitle='Add Bike'
+      layouttitle='Dashboard Bike table'
     >
       <BikeTable />
     </TableWrapper>

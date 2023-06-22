@@ -23,7 +23,7 @@ const initialState = {
   users: [],
   userById: null,
 };
-
+// console.log(userInfo);
 const authSlice = createSlice({
   name: "user",
   initialState,
@@ -72,6 +72,7 @@ const authSlice = createSlice({
       state.success = true;
       state.userInfo = payload.user;
       state.userToken = payload.token;
+      localStorage.setItem("userToken", payload.token);
     },
     [userLogin.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -103,7 +104,6 @@ const authSlice = createSlice({
     [userAll.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.users = payload;
-      console.log(state.users, "from authSlice");
     },
     [userAll.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -113,11 +113,12 @@ const authSlice = createSlice({
     // get logged in  user
     [LoggedInUser.pending]: (state) => {
       state.loading = true;
-      state.error = null;
+      state.error = false;
     },
     [LoggedInUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload;
+      console.log(state.userInfo, "loggedinuse, authSlice");
     },
     [LoggedInUser.rejected]: (state, { payload }) => {
       state.loading = false;

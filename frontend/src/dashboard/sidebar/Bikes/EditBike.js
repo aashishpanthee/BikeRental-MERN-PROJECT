@@ -20,7 +20,6 @@ const EditBike = () => {
   const [selectedImage, setSelectedImage] = useState();
   const [errors, setErrors] = useState("");
   let { id } = useParams();
-  console.log(id, "from params");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onImageChange = (event, setFieldValue) => {
@@ -67,7 +66,6 @@ const EditBike = () => {
             }}
             validationSchema={ValidateBikeAdd}
             onSubmit={async (values) => {
-              console.log(values, "values");
               let formdata = new FormData();
               formdata.append("name", values.name);
               formdata.append("number", values.number);
@@ -80,7 +78,6 @@ const EditBike = () => {
                 formdata: formdata,
               };
               const datas = await dispatch(editBikeById(data));
-              console.log(datas, "here we are in the position");
               if (datas.error) {
                 setErrors(data.payload);
                 dispatch(clearFields());

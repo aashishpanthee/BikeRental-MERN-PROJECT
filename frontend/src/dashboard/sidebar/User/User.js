@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import UserTable from "../User/UserTable";
 import TableWrapper from "../../common/TableWrapper";
+import Layout from "../../../components/Layout";
 
 const User = () => {
   return (
-    <>
+    <Layout title={"Dashboard User table"}>
       <div className='flex flex-wrap mt-4'>
         <div className='w-full px-4 mb-12'>
           <div className='relative flex flex-col min-w-0 mb-6 break-words border-0 rounded-lg shadow-lg max-w-64'>
@@ -21,7 +22,7 @@ const User = () => {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
     /*   <TableWrapper title='User' addlink='/dashboard/'>
     </TableWrapper> */
   );

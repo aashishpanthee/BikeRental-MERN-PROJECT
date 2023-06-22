@@ -8,6 +8,7 @@ const Category = () => {
       title='Total Category'
       addlink='/dashboard/category/add'
       addTitle='Add Category'
+      layouttitle='Dashboard Category table'
     >
       <CategoryTable />
     </TableWrapper>

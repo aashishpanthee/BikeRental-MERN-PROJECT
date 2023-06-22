@@ -82,8 +82,9 @@ export const LoggedInUser = createAsyncThunk(
   "user/me",
   async (alluser, { rejectWithValue }) => {
     try {
-      const data = await Http.get("/me");
-      return data.data.data;
+      const data = await Http.get("/api/v1/auth/me");
+      console.log(data.data, "authAction loggedinuser");
+      return data.data.user;
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);

@@ -13,8 +13,12 @@ const Headerstats = () => {
   }, []);
   const { bikes } = useSelector((state) => state.bike);
   const { users } = useSelector((state) => state.auth);
+  const { categories } = useSelector((state) => state.category);
   let totalbikes = bikes ? bikes.length : `No bikes available`;
   let totalUsers = users ? users.length : `No users currently`;
+  let totalCategory = categories
+    ? categories.length
+    : `No categories of bike available`;
 
   return (
     <>
@@ -50,8 +54,8 @@ const Headerstats = () => {
               </div>
               <div className='w-full px-4 lg:w-6/12 xl:w-3/12'>
                 <CardStats
-                  statSubtitle='Available Bikes'
-                  statTitle='20'
+                  statSubtitle='Bikes Category'
+                  statTitle={totalCategory}
                   statArrow='down'
                   statPercent='1.10'
                   statPercentColor='text-orange-500'

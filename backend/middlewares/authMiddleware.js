@@ -9,14 +9,15 @@ export const requireSignIn = async (req, res, next) => {
     //   `yo split function chahi, postman ma check garda hatauna parxa, frontend bata garda, rakhna parxa req.headers.authorization.split(" ")[1]`
     // );
     if (!req.headers.authorization) {
-      console.log("not here ");
-      // return res.status(404).json({ message: "Unauthorized User." });
+      console.log(" headers not here ");
+      return res.status(404).json({ message: "Unauthorized User." });
     }
     const decode = JWT.verify(
       req.headers.authorization.split(" ")[1],
       process.env.JWT_SECRET
     );
     req.user = decode;
+    console.log(req.user);
     next();
   } catch (error) {
     console.log(error, "error in requireSign in");

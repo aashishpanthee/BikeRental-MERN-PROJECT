@@ -86,3 +86,20 @@ export const AddOrder = createAsyncThunk(
     }
   }
 );
+
+// orders of particular renter
+export const GetOrder = createAsyncThunk(
+  "order/get",
+  async (allUser, { rejectWithValue }) => {
+    try {
+      const data = await Http.get("/api/v1/order/orders");
+      return data.data.orders;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

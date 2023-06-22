@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AddOrder, AllOrderById, AllOrder } from "./orderAction";
+import { AddOrder, AllOrderById, AllOrder, GetOrder } from "./orderAction";
 
 const initialState = {
   loading: false,
@@ -7,6 +7,7 @@ const initialState = {
   success: false,
   orders: [],
   orderById: null,
+  userOrders: [],
 };
 
 const orderSlice = createSlice({
@@ -45,6 +46,20 @@ const orderSlice = createSlice({
       state.orders = payload;
     },
     [AllOrder.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+
+    // //all orders of particular renter
+    [GetOrder.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [GetOrder.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.userOrders = payload;
+    },
+    [GetOrder.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

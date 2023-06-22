@@ -83,9 +83,13 @@ export const loginController = async (req, res) => {
       });
     }
     // token
-    const token = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
+    const token = JWT.sign(
+      { _id: user._id, name: user.name, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d",
+      }
+    );
     res.status(200).send({
       success: true,
       message: "Login successfull",
@@ -186,5 +190,32 @@ export const forgotPasswordController = async (req, res) => {
     res
       .status(500)
       .send({ success: false, message: "Something went wrong", error });
+  }
+};
+
+// update profile or get the status of LoggedInUser
+
+export const userProfileController = async (req, res) => {
+  try {
+    console.log(req.user, "hello user");
+    const user = await userModel.findById(req.user._id);
+    if (!user) {
+      res.status(400).send({
+        success: false,
+        message: "User not found ",
+      });
+      res.status(200).send({
+        success: false,
+        user,
+        message: "Userinfo fetched successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Something went wrong",
+    });
   }
 };

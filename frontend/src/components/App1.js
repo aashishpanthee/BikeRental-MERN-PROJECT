@@ -13,6 +13,7 @@ import BikeRentSection from "./BikeRentSection";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ForgotPassword from "./ForgotPassword";
+import OrderDropdown from "./OrderDropdown";
 
 const App1 = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -38,6 +39,7 @@ const App1 = () => {
           <Route path='/bikecategory' element={<Categories />} />
           <Route path='/bikerentsection' element={<BikeRentSection />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/orderdropdown' element={<OrderDropdown />} />
           <Route path='/reviews' element={<Testimonial />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />

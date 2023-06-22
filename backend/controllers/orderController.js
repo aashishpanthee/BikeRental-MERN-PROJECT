@@ -3,7 +3,6 @@ import orderModel from "../models/orderModel.js";
 // registering orders from users
 export const makeOrderController = async (req, res) => {
   try {
-    console.log(req.user._id, "userid from orderController");
     const { bikeId, totalAmt, startDate, endDate } = req.body;
     // Validations
     if (!totalAmt) {
@@ -17,7 +16,7 @@ export const makeOrderController = async (req, res) => {
     }
     const order = new orderModel({
       renter: req.user._id,
-      bike: bikeId,
+      bikes: bikeId,
       totalAmt: totalAmt,
       startDate: startDate,
       endDate: endDate,
@@ -34,5 +33,27 @@ export const makeOrderController = async (req, res) => {
       message: "Somethingwent wrong",
       error,
     });
+  }
+};
+
+// order of single user : get
+export const getOrdersController = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({ renter: req.user._id })
+      .populate("bikes", "-photo")
+      .populate("renter", "name");
+    res.status(200).send({
+      success: true,
+      message: "Successfully fetched all orders of this user",
+      orders,
+    });
+  } catch (error) {
+    console.log(error),
+      res.status(500).send({
+        success: false,
+        error,
+        message: "Something went wrong",
+      });
   }
 };

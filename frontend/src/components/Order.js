@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast";
 import { clearFields } from "../redux/features/Order/orderSlice";
 import Error from "../Helper/Error";
 // import { clearFields } from "../redux/features/Order/orderSlice";
-const base_url = "http://localhost:8000/";
+const base_url = "http://localhost:5000/";
 const { RangePicker } = DatePicker;
 const Order = () => {
   const [error, setError] = useState("");
@@ -92,7 +92,7 @@ const Order = () => {
                 <img
                   alt={bikeBySlug.name}
                   className='object-cover object-center w-full rounded h-60 sm:h-36 lg:w-1/2 lg:h-auto'
-                  src={`${base_url}${bikeBySlug.image}`}
+                  src={`${base_url}api/v1/bike/bike-photo/${bikeBySlug._id}`}
                 />
                 <div className='w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0'>
                   <h2 className='text-sm tracking-widest text-gray-500 title-font'>
