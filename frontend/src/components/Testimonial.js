@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "antd";
 const Testimonial = () => {
-  const array = [
+  const array1 = [
     {
       name: "Sumit Jung Chhetri",
       review:
@@ -21,6 +21,8 @@ const Testimonial = () => {
         "The bikes themselves were in top-notch condition. I felt safe and comfortable riding them throughout my trip.",
       image: "../images/testimonials/aryal.jpg",
     },
+  ];
+  const array2 = [
     {
       name: "Sandesh Chhetri",
       review:
@@ -39,7 +41,8 @@ const Testimonial = () => {
         "I felt confident and safe riding it, knowing that it had been properly maintained and serviced.",
       image: "../images/testimonials/prem.jpg",
     },
-
+  ];
+  const array3 = [
     {
       name: "Dhiraj Neupane",
       review:
@@ -51,6 +54,12 @@ const Testimonial = () => {
       review:
         "In terms of comfort and safety,the bike I used was in good condition.",
       image: "../images/testimonials/sujan.jpg",
+    },
+    {
+      name: "Manzil Shrestha",
+      review:
+        "The bikes are always in excellent condition.I felt confident and safe riding it.",
+      image: "../images/testimonials/avatar.jpg",
     },
   ];
   return (
@@ -65,7 +74,7 @@ const Testimonial = () => {
             dotPosition='top'
             className='m-auto sm:w-[26rem] w-[20rem] '
           >
-            {array.map((array, index) => {
+            {array1.map((array, index) => {
               return (
                 <div
                   className='px-2 py-6 mb-6 border-2 rounded-md sm:px-3 sm:gap-2 lg:w-1/3 lg:mb-0'
@@ -92,7 +101,7 @@ const Testimonial = () => {
             dotPosition='left'
             className='m-auto sm:w-[26rem] w-[20rem]'
           >
-            {array.map((array, index) => {
+            {array2.map((array, index) => {
               return (
                 <div
                   className='gap-2 px-3 py-6 mb-6 border-2 rounded-md lg:w-1/3 lg:mb-0'
@@ -119,7 +128,7 @@ const Testimonial = () => {
             dotPosition='buttom'
             className='m-auto sm:w-[26rem] w-[20rem]'
           >
-            {array.map((array, index) => {
+            {array3.map((array, index) => {
               return (
                 <div
                   className='gap-2 px-3 py-6 mb-6 border-2 rounded-md lg:w-1/3 lg:mb-0'

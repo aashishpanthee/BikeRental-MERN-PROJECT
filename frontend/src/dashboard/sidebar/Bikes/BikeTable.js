@@ -14,7 +14,6 @@ const BikeTable = ({ color }) => {
   }, []);
 
   const { bikes } = useSelector((state) => state.bike);
-  console.log(bikes);
   const handleDeleteClick = (id) => {
     setBikeId(id);
     setShowModal(true);

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AddOrder, AllOrderById, AllOrder, GetOrder } from "./orderAction";
+import { AddOrder, AllOrder, GetOrder, updateStatus } from "./orderAction";
 
 const initialState = {
   loading: false,
@@ -64,19 +64,34 @@ const orderSlice = createSlice({
       state.error = payload;
     },
 
-    //all the orders by id
-    [AllOrderById.pending]: (state) => {
+    // update status of order by admin
+    [updateStatus.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
-    [AllOrderById.fulfilled]: (state, { payload }) => {
+    [updateStatus.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.orderById = payload;
+      // state.orders = payload;
+      // console.log(state.orders, "hello");
     },
-    [AllOrderById.rejected]: (state, { payload }) => {
+    [updateStatus.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },
+
+    //all the orders by id
+    // [AllOrderById.pending]: (state) => {
+    //   state.loading = true;
+    //   state.error = null;
+    // },
+    // [AllOrderById.fulfilled]: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.orderById = payload;
+    // },
+    // [AllOrderById.rejected]: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.error = payload;
+    // },
   },
 });
 export const { clearFields } = orderSlice.actions;

@@ -33,7 +33,6 @@ const Login = () => {
       password: password,
     };
     const datas = await dispatch(userLogin(data));
-    console.log(datas, "here we are datas");
     if (datas.error) {
       setErrors(datas.payload);
       dispatch(clearFields());

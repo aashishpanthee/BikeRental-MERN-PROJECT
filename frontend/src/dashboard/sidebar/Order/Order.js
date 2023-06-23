@@ -4,11 +4,7 @@ import OrderTable from "./Ordertable";
 
 const Order = () => {
   return (
-    <TableWrapper
-      title='Total Rental Orders'
-      addlink='/dashboard/rental/add'
-      addTitle='Add Order'
-    >
+    <TableWrapper title='Total Rental Orders'>
       <OrderTable />
     </TableWrapper>
   );

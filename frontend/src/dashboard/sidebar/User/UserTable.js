@@ -15,7 +15,7 @@ const UserTable = () => {
   );
 
   return (
-    <>
+    <div style={{ maxHeight: "300px", overflowY: "auto" }}>
       <table className='items-center w-full bg-transparent border-collapse'>
         <thead>
           <tr>
@@ -106,7 +106,7 @@ const UserTable = () => {
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

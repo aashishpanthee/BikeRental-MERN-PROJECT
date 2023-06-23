@@ -197,7 +197,6 @@ export const forgotPasswordController = async (req, res) => {
 
 export const userProfileController = async (req, res) => {
   try {
-    console.log(req.user, "hello user");
     const user = await userModel.findById(req.user._id);
     if (!user) {
       res.status(400).send({
