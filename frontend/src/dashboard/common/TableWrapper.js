@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 
 const TableWrapper = ({
-  error = "",
-  success = "",
   title = "",
   addlink = "",
   addTitle = "",
@@ -17,8 +15,6 @@ const TableWrapper = ({
   return (
     <Layout title={layouttitle}>
       <div className='relative flex flex-col w-full min-w-0 break-words rounded-lg shadow-lg'>
-        {/* {error && toast.error(error)}
-        {success && toast.success(`${title} ${method} sucessfully`)} */}
         <div className='px-6 py-4 bg-white rounded-t'>
           <div className='flex justify-between text-center'>
             <h6 className='text-xl font-bold text-blueGray-700'>{title}</h6>

@@ -12,7 +12,6 @@ import { LoggedInUser } from "../redux/features/User/authAction";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Rent Bikes", href: "/bikerentsection" },
-  // { name: "My Orders", href: "/order" },
 ];
 
 function classNames(...classes) {

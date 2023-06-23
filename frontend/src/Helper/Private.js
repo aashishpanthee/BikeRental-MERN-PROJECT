@@ -31,9 +31,7 @@ const Private = ({ children }) => {
         } else {
           setOk(true);
         }
-      } catch (error) {
-        console.log(error, "Error in private route");
-      }
+      } catch (error) {}
     };
     if (userToken) authCheck();
   }, [userToken]);

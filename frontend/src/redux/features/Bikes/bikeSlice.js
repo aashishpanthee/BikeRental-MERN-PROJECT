@@ -7,8 +7,6 @@ import {
   getBikeById,
   getBikeBySlug,
   FilterBikes,
-  // getTotal,
-  // getBikeList,
 } from "./bikeAction";
 
 const initialState = {
@@ -71,7 +69,6 @@ const bikeSlice = createSlice({
     [getBikeBySlug.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.bikeBySlug = payload;
-      console.log(state.bikeBySlug, "bikeSlice slug");
     },
     [getBikeBySlug.rejected]: (state, { payload }) => {
       state.loading = false;

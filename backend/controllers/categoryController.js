@@ -26,7 +26,6 @@ export const createCategoryController = async (req, res) => {
       category,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       error,
@@ -37,7 +36,6 @@ export const createCategoryController = async (req, res) => {
 
 export const updateCategoryController = async (req, res) => {
   try {
-    console.log(req.body);
     const { name } = req.body;
     const { _id } = req.params;
     if (!name) {
@@ -69,7 +67,6 @@ export const updateCategoryController = async (req, res) => {
       category,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       error,
@@ -87,7 +84,6 @@ export const getAllCategoriesController = async (req, res) => {
       categories,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       message: "Error in getting all categories",
       error,
@@ -111,7 +107,6 @@ export const getSingleCategoryController = async (req, res) => {
       category,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       error,
@@ -135,7 +130,6 @@ export const getSingleCategoryControllerById = async (req, res) => {
       category,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       error,
@@ -154,7 +148,6 @@ export const deleteCategoryController = async (req, res) => {
       deletedCategory,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in deleting category",

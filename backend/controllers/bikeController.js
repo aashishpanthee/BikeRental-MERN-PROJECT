@@ -40,7 +40,6 @@ export const addBikeController = async (req, res) => {
       bike,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in adding bike",
@@ -78,7 +77,6 @@ export const getBikeAllController = async (req, res) => {
       bikes,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Unsuccessful fetching all bikes",
@@ -100,7 +98,6 @@ export const getSingleBikeController = async (req, res) => {
       bike,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Something went wrong",
@@ -112,7 +109,6 @@ export const getSingleBikeController = async (req, res) => {
 // get single bike by bid : for customer side
 export const getSingleBikeControllerById = async (req, res) => {
   try {
-    console.log(req.params, "params id");
     const bike = await bikeModel
       .findOne({ _id: req.params.bid })
       .select("-photo")
@@ -123,7 +119,6 @@ export const getSingleBikeControllerById = async (req, res) => {
       bike,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Something went wrong",
@@ -168,7 +163,6 @@ export const updateBikeController = async (req, res) => {
       bike,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in updating bike",
@@ -185,7 +179,6 @@ export const deleteBikeController = async (req, res) => {
       message: "Bike deleted successfully",
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in deleting bike",
@@ -202,7 +195,6 @@ export const bikePhotoController = async (req, res) => {
       return res.status(200).send(bike.photo.data);
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error while getting bike image",
@@ -228,7 +220,6 @@ export const bikeFilterController = async (req, res) => {
       bikes,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error while filtering bikes",

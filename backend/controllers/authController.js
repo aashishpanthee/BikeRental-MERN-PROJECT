@@ -47,7 +47,6 @@ export const registerController = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
     resizeBy.status(500).send({
       success: false,
       message: "Registration error",
@@ -102,7 +101,6 @@ export const loginController = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Login failed",
@@ -126,7 +124,6 @@ export const AllUsersController = async (req, res) => {
       users: allUsers,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Something went wrong",
@@ -186,7 +183,6 @@ export const forgotPasswordController = async (req, res) => {
 
     // check
   } catch (error) {
-    console.log(error);
     res
       .status(500)
       .send({ success: false, message: "Something went wrong", error });
@@ -210,7 +206,6 @@ export const userProfileController = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       error,

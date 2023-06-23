@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  BikeAll,
-  FilterBikes,
-  // getBikeList,
-  // getTotal,
-} from "../redux/features/Bikes/bikeAction";
+import { BikeAll, FilterBikes } from "../redux/features/Bikes/bikeAction";
 import { CategoryAll } from "../redux/features/Category/categoryAction";
 import { addToCart } from "../redux/features/Cart/cartSlice";
 import { Checkbox, Radio } from "antd";
@@ -17,7 +12,6 @@ const BikeRentSection = () => {
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -52,12 +46,6 @@ const BikeRentSection = () => {
     }
     setChecked(all);
   };
-  // const clearFilter = () => {
-  //   console.log("hello");
-  //   setChecked([]);
-  //   setRadio([]);
-  //   navigate("/bikerentsection");
-  // };
 
   return (
     <Layout title={"Bike rental made easy"}>
@@ -81,7 +69,10 @@ const BikeRentSection = () => {
             <div className='flex flex-col gap-2 ml-2 text-base font-semibold'>
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices?.map((p) => (
-                  <div className='flex flex-col gap-2 mt-2 text-base font-semibold'>
+                  <div
+                    className='flex flex-col gap-2 mt-2 text-base font-semibold'
+                    key={p.array}
+                  >
                     <Radio value={p.array}>{p.name}</Radio>
                   </div>
                 ))}

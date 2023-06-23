@@ -50,7 +50,6 @@ export const forgotPassword = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const data = await Http.post(`/api/v1/auth/forgot-password`, userData);
-      console.log(data, "authAction forgotPassword");
       return data.data;
     } catch (error) {
       console.log(error);
@@ -83,7 +82,6 @@ export const LoggedInUser = createAsyncThunk(
   async (alluser, { rejectWithValue }) => {
     try {
       const data = await Http.get("/api/v1/auth/me");
-      console.log(data.data, "authAction loggedinuser");
       return data.data.user;
     } catch (error) {
       if (error.response && error.response.data.message) {

@@ -59,7 +59,6 @@ const AddBike = () => {
         }}
         validationSchema={ValidateBikeAdd}
         onSubmit={async (values) => {
-          console.log(values);
           let formdata = new FormData();
           formdata.append("name", values.name);
           formdata.append("number", values.number);

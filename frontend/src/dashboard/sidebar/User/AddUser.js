@@ -7,7 +7,7 @@ import { clearFields } from "../../../redux/features/User/authSlice";
 // import { ValidateUser } from "../../Common/Validation";
 import Spinner from "../../Helper/Spinner";
 import { useEffect } from "react";
-import AddEditWrapper from "../../Common/AddEditWrapper";
+import AddEditWrapper from "../../common/AddEditWrapper";
 function Adduser() {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState();

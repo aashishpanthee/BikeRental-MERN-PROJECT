@@ -9,7 +9,6 @@ export const requireSignIn = async (req, res, next) => {
     //   `yo split function chahi, postman ma check garda hatauna parxa, frontend bata garda, rakhna parxa req.headers.authorization.split(" ")[1]`
     // );
     if (!req.headers.authorization) {
-      console.log(" headers not here ");
       return res.status(404).json({ message: "Unauthorized User." });
     }
     const decode = JWT.verify(
@@ -19,7 +18,6 @@ export const requireSignIn = async (req, res, next) => {
     req.user = decode;
     next();
   } catch (error) {
-    console.log(error, "error in requireSign in");
     res.status(401).send({
       message: "Invalid or expired token",
       error: error,
@@ -40,7 +38,6 @@ export const isAdmin = async (req, res, next) => {
       next();
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       error,

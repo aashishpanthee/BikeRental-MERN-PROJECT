@@ -11,7 +11,6 @@ export const addCategory = createAsyncThunk(
       );
       return data.data.category;
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -76,7 +75,6 @@ export const editCategoryById = createAsyncThunk(
       );
       return data.data;
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {

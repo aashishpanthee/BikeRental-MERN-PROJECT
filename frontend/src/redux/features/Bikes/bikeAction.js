@@ -71,7 +71,6 @@ export const editBikeById = createAsyncThunk(
         `/api/v1/bike/update-bike/${item.id}`,
         item.formdata
       );
-      console.log(data.data, "from edit bikeAction");
       return data.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -103,9 +102,7 @@ export const FilterBikes = createAsyncThunk(
   "bike/filter",
   async (data, { rejectWithValue }) => {
     try {
-      console.log(data, "from coming value frontend");
       const response = await Http.post(`/api/v1/bike/filter-bikes`, data);
-      console.log(response.data, "coming from backend");
       return response.data.bikes;
     } catch (error) {
       if (error.response && error.response.data.message) {

@@ -10,15 +10,10 @@ import {
   clearCart,
   getTotals,
 } from "../redux/features/Cart/cartSlice";
-import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  //   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);

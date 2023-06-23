@@ -4,7 +4,7 @@ import { Button, Modal, Space } from "antd";
 import { DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getBikeById, getBikeBySlug } from "../redux/features/Bikes/bikeAction";
+import { getBikeBySlug } from "../redux/features/Bikes/bikeAction";
 import { useParams } from "react-router-dom";
 import Spinner from "../Helper/Spinner";
 import { AddOrder } from "../redux/features/Order/orderAction";
@@ -25,7 +25,6 @@ const Order = () => {
   const [totalamount, setTotalAmount] = useState(0);
   const [open, setOpen] = useState(false);
   const { loading, success } = useSelector((state) => state.order);
-  console.log(success, "success");
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -71,7 +70,6 @@ const Order = () => {
       endDate: to,
       bikeId: bikeBySlug._id,
     };
-    console.log(formData);
     const data = await dispatch(AddOrder(formData));
     if (data.error) {
       setError(data.payload);

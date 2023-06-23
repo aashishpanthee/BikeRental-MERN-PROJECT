@@ -18,7 +18,6 @@ const EditCategory = () => {
   let { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(id, "params");
   useEffect(() => {
     dispatch(getCategoryById(id));
   }, [id]);

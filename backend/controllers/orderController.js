@@ -27,7 +27,6 @@ export const makeOrderController = async (req, res) => {
       order,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Somethingwent wrong",
@@ -49,12 +48,11 @@ export const getOrdersController = async (req, res) => {
       orders,
     });
   } catch (error) {
-    console.log(error),
-      res.status(500).send({
-        success: false,
-        error,
-        message: "Something went wrong",
-      });
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Something went wrong",
+    });
   }
 };
 
@@ -68,7 +66,6 @@ export const AllOrdersController = async (req, res) => {
       .sort({ createdAt: "-1" });
     res.json(orders);
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Something went wrong while fetching user orders",
@@ -82,7 +79,6 @@ export const updateStatusController = async (req, res) => {
   try {
     const { orderId } = req.params;
     const { status } = req.body;
-    console.log(status, "status===============");
     const orders = await orderModel.findByIdAndUpdate(
       orderId,
       { status },
@@ -90,7 +86,6 @@ export const updateStatusController = async (req, res) => {
     );
     res.json(orders);
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: "Something went wrong while updating user order status",
