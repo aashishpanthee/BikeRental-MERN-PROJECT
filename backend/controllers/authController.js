@@ -47,7 +47,7 @@ export const registerController = async (req, res) => {
       },
     });
   } catch (error) {
-    resizeBy.status(500).send({
+    res.status(500).send({
       success: false,
       message: "Registration error",
       error,

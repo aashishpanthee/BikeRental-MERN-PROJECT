@@ -23,6 +23,7 @@ const Ordertable = ({ color }) => {
     dispatch(AllOrder());
   }, []);
   const { loading, error, orders } = useSelector((state) => state.order);
+  console.log(orders, "ordertable");
   const handleChange = (orderId, value) => {
     let data = {
       orderId: orderId,
@@ -130,10 +131,12 @@ const Ordertable = ({ color }) => {
                     {i + 1}
                   </td>
                   <td className='items-center px-5 py-3 text-left align-middle border-t-0 border-l-0 border-r-0 text-md whitespace-nowrap'>
-                    <div className='flex'>{order.bikes.name}</div>
+                    <div className='flex'>
+                      {order.bikes.name ? order.bikes.name : "N/A"}
+                    </div>
                   </td>
                   <td className='items-center px-5 py-3 text-left align-middle border-t-0 border-l-0 border-r-0 text-md whitespace-nowrap'>
-                    {order.bikes.number}
+                    {order.bikes.number ? order.bikes.number : "N/A"}
                   </td>
                   <td className='items-center px-5 py-3 text-left align-middle border-t-0 border-l-0 border-r-0 text-md whitespace-nowrap'>
                     {order.renter.name}

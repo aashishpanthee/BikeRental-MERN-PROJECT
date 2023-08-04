@@ -112,12 +112,12 @@ const OrderDropdown = ({ color }) => {
                       </td>
                       <td className='items-center p-4 px-6 text-left align-middle border-t-0 border-l-0 border-r-0 text-md whitespace-nowrap'>
                         <div className='flex items-center gap-3'>
-                          {order.bikes.name}
+                          {order.bikes.name ? order.bikes.name : "N/A"}
                         </div>
                       </td>
                       <td className='items-center p-4 px-6 text-left align-middle border-t-0 border-l-0 border-r-0 text-md whitespace-nowrap'>
                         <div className='flex items-center gap-3'>
-                          {order.bikes.number}
+                          {order.bikes.number ? order.bikes.number : "N/A"}
                         </div>
                       </td>
                       <td className='items-center p-4 px-6 text-center align-middle border-t-0 border-l-0 border-r-0 text-md whitespace-nowrap'>

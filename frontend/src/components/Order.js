@@ -43,6 +43,13 @@ const Order = () => {
       navigate("/");
     }
   }, [success, navigate]);
+
+  useEffect(() => {
+    if (error) {
+      setError("");
+      navigate("/login");
+    }
+  }, [error]);
   const disabledDate = (current) => {
     // Disable dates before today or the current date
     return current && current < moment().startOf("day");
@@ -189,7 +196,7 @@ const Order = () => {
                     >
                       Rs {totalamount}
                     </span>
-                    {error && <Error>{error}</Error>}
+
                     <Button
                       onClick={showModal}
                       disabled={!to && !from}
@@ -210,6 +217,11 @@ const Order = () => {
                       cancelText='No'
                     ></Modal>
                   </div>
+                  {error && (
+                    <span className='flex justify-start mt-3 ml-10'>
+                      <Error>{error}</Error>
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
