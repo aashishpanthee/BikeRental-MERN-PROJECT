@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   BikeAll,
+  FilterBikes,
   addBike,
   deleteBike,
   editBikeById,
   getBikeById,
   getBikeBySlug,
-  FilterBikes,
 } from "./bikeAction";
 
 const initialState = {
@@ -156,7 +156,6 @@ const bikeSlice = createSlice({
     // [getBikeList.fulfilled]: (state, action) => {
     //   state.loading = false;
     //   state.bikes = [...state.bikes, action.payload];
-    //   console.log(state.bikes, "in slice");
     // },
     // [getBikeList.rejected]: (state, { payload }) => {
     //   state.loading = false;

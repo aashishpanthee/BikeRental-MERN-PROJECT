@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { Button, DatePicker, Modal, Space } from "antd";
 import moment from "moment";
-import { Button, Modal, Space } from "antd";
-import { DatePicker } from "antd";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getBikeBySlug } from "../redux/features/Bikes/bikeAction";
-import { useParams } from "react-router-dom";
-import Spinner from "../Helper/Spinner";
-import { AddOrder } from "../redux/features/Order/orderAction";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { clearFields } from "../redux/features/Order/orderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import Error from "../Helper/Error";
+import Spinner from "../Helper/Spinner";
+import { getBikeBySlug } from "../redux/features/Bikes/bikeAction";
+import { AddOrder } from "../redux/features/Order/orderAction";
+import { clearFields } from "../redux/features/Order/orderSlice";
 // import { clearFields } from "../redux/features/Order/orderSlice";
-const base_url = "http://localhost:5000/";
+
 const { RangePicker } = DatePicker;
 const Order = () => {
+  const base_url = process.env.REACT_APP_API_URL;
   const [error, setError] = useState("");
   let { slug } = useParams();
   const navigate = useNavigate();
@@ -93,13 +92,15 @@ const Order = () => {
         <>
           <section className='overflow-hidden text-gray-600 body-font'>
             <div className='container px-5 py-10 mx-auto'>
-              <div className='flex flex-wrap mx-auto lg:w-4/5'>
-                <img
-                  alt={bikeBySlug.name}
-                  className='object-cover object-center w-full rounded h-60 sm:h-36 lg:w-1/2 lg:h-auto'
-                  src={`${base_url}api/v1/bike/bike-photo/${bikeBySlug._id}`}
-                />
-                <div className='w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0'>
+              <div className='flex flex-col gap-8 mx-auto lg:w-4/5 lg:flex-row lg:items-start'>
+                <div className='w-full lg:w-1/2 rounded-lg overflow-hidden shadow-sm bg-gray-100 aspect-[4/3]'>
+                  <img
+                    alt={bikeBySlug.name}
+                    className='object-cover object-center w-full h-full'
+                    src={`${base_url}/api/v1/bike/bike-photo/${bikeBySlug._id}`}
+                  />
+                </div>
+                <div className='w-full space-y-3 lg:w-1/2 lg:pl-10 lg:py-2'>
                   <h2 className='text-sm tracking-widest text-gray-500 title-font'>
                     Rent Now !!!
                   </h2>
@@ -182,25 +183,22 @@ const Order = () => {
                     format='DD MMMM YYYY'
                     disabledDate={disabledDate}
                     onChange={selectTimeSlots}
-                    className='mb-2'
+                    className='w-full mb-2 sm:w-auto'
                   />
 
                   <div className='font-semibold'>Total Days: {days}</div>
-                  <div className='flex items-center'>
-                    <span className='text-xl font-medium text-gray-900 title-font'>
-                      Price :
-                    </span>
-                    <span
-                      className='ml-2 text-xl font-medium title-font'
-                      name='totalAmt'
-                    >
-                      Rs {totalamount}
-                    </span>
+                  <div className='flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:flex-wrap'>
+                    <div className='flex items-center gap-2 text-xl font-medium text-gray-900 title-font'>
+                      <span>Price :</span>
+                      <span className='text-xl font-medium title-font' name='totalAmt'>
+                        Rs {totalamount}
+                      </span>
+                    </div>
 
                     <Button
                       onClick={showModal}
                       disabled={!to && !from}
-                      className='flex items-center px-6 py-2 ml-6 text-white border-0 rounded bg-orange focus:outline-none hover:bg-black hover:text-white'
+                      className='flex items-center px-6 py-2 text-white border-0 rounded bg-orange focus:outline-none hover:bg-black hover:text-white'
                     >
                       Rent Now
                     </Button>

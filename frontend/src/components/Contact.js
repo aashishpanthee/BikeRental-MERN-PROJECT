@@ -1,9 +1,9 @@
+import emailjs from "@emailjs/browser";
 import {
   EnvelopeIcon,
-  PhoneIcon,
   MapPinIcon,
+  PhoneIcon,
 } from "@heroicons/react/24/outline";
-import emailjs from "@emailjs/browser";
 import { toast } from "react-hot-toast";
 export default function Contact() {
   const sendEmail = (e) => {
@@ -11,8 +11,8 @@ export default function Contact() {
 
     emailjs
       .sendForm(
-        "service_zis0xqq",
-        "template_aqbhj68",
+        "service_rg77nne",
+        "template_h2fpo2k",
         e.target,
         "rKJvlPIG0AD4GKbDI"
       )
@@ -28,10 +28,10 @@ export default function Contact() {
   };
 
   return (
-    <div id='contact' className='mt-10'>
-      <div className="text-center pt-8 pb-8 font-['Open_Sans']">
+    <div id='contact' className='py-10 bg-gray-50 sm:py-14'>
+      <div className="text-center px-4 font-['Open_Sans']">
         <h2
-          className='text-3xl font-extrabold tracking-tight sm:text-4xl text-slate-900'
+          className='text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl text-slate-900'
           data-aos='zoom-in'
           data-aos-duration='1000'
         >
@@ -39,68 +39,68 @@ export default function Contact() {
           Let's give a try
         </h2>
       </div>
-      <div className='px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8'>
-        <div className='max-w-lg mx-auto md:max-w-none md:grid md:grid-cols-2 md:gap-8'>
-          <div>
+      <div className='px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8'>
+        <div className='max-w-lg mx-auto md:max-w-none md:grid md:grid-cols-2 md:gap-10 lg:gap-16'>
+          <div className='mb-10 md:mb-0'>
             <h2
-              className='text-2xl font-extrabold sm:text-3xl'
+              className='mb-8 text-2xl font-extrabold sm:text-3xl'
               data-aos='fade-right'
               data-aos-duration='1000'
             >
               Get in touch
             </h2>
 
-            <div className='mt-9'>
-              <div className='flex'>
+            <div className='space-y-6'>
+              <div className='flex items-start'>
                 <div className='flex-shrink-0'>
                   <PhoneIcon
-                    className='w-8 h-8 text-orange'
+                    className='w-7 h-7 text-orange'
                     aria-hidden='true'
                   />
                 </div>
-                <div className='ml-3 text-base'>
-                  <p className='text-2xl font-extrabold'>Phone no</p>
-                  <p>
-                    <a href='tel:+9779824498186'>+977 9864858784</a>
+                <div className='ml-4 text-base'>
+                  <p className='text-lg font-bold text-gray-900'>Phone no</p>
+                  <p className='mt-1 text-gray-600'>
+                    <a href='tel:+9779864858784' className='transition-colors hover:text-orange'>+977 9864858784</a>
                   </p>
                 </div>
               </div>
-              <div className='flex mt-6'>
+              <div className='flex items-start'>
                 <div className='flex-shrink-0'>
                   <EnvelopeIcon
-                    className='w-8 h-8 text-orange'
+                    className='w-7 h-7 text-orange'
                     aria-hidden='true'
                   />
                 </div>
-                <div className='ml-3 text-base'>
-                  <p className='text-2xl font-extrabold'>Email</p>
-                  <p className='mt-2'>
-                    <a href='mailto:sherpa.codes@gmail.com'>
+                <div className='ml-4 text-base'>
+                  <p className='text-lg font-bold text-gray-900'>Email</p>
+                  <p className='mt-1 text-gray-600'>
+                    <a href='mailto:bikebook@gmail.com' className='transition-colors hover:text-orange'>
                       bikebook@gmail.com
                     </a>
                   </p>
                 </div>
               </div>
-              <div className='flex mt-6'>
+              <div className='flex items-start'>
                 <div className='flex-shrink-0'>
                   <MapPinIcon
-                    className='w-8 h-8 text-orange'
+                    className='w-7 h-7 text-orange'
                     aria-hidden='true'
                   />
                 </div>
-                <div className='ml-3 text-base'>
-                  <p className='text-2xl font-extrabold'>Location</p>
-                  <div className='text-base'>
-                    <p className='mt-1'>Lumbini Province, Nepal</p>
+                <div className='ml-4 text-base'>
+                  <p className='text-lg font-bold text-gray-900'>Location</p>
+                  <div className='mt-1 text-base text-gray-600'>
+                    <p>Lumbini Province, Nepal</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className='mt-12 sm:mt-16 md:mt-0'>
-            <div className='text-center'>
+          <div className='p-6 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8'>
+            <div className='mb-6 text-center'>
               <h2
-                className='pb-12 text-3xl font-extrabold tracking-tight sm:text-4xl'
+                className='text-2xl font-extrabold tracking-tight sm:text-3xl'
                 data-aos='fade-left'
                 data-aos-duration='1000'
               >
@@ -110,7 +110,7 @@ export default function Contact() {
             </div>
             <form
               onSubmit={sendEmail}
-              className='grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 align-right'
+              className='grid grid-cols-1 gap-y-5 sm:grid-cols-2 sm:gap-x-6'
             >
               <div>
                 <label

@@ -5,23 +5,25 @@ import { Link } from "react-router-dom";
 
 const Main = () => {
   return (
-    <section className='py-3 text-center bg-teal-50 h-1/2'>
-      <h3 className='mt-2 text-2xl antialiased font-semibold sm:font-extrabold sm:text-6xl sm:pt-10 text-orange sm:mt-4'>
-        Rent a Bike
-      </h3>
-      <LazyLoadImage
-        src='../images/Home.png'
-        alt=''
-        className='h-full img-lazy'
-        placeholderSrc='https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png'
-        effect='blur'
-      />
-      <Link
-        className='px-2 py-1 mt-2 text-white rounded bg-slate-900 sm:font-semibold sm:py-2 sm:px-4 hover:bg-orange sm:mt-4'
-        to='/bikerentsection'
-      >
-        Bike Showcase
-      </Link>
+    <section className='py-8 bg-teal-50 sm:py-12'>
+      <div className='flex flex-col items-center max-w-5xl gap-6 px-4 mx-auto text-center sm:gap-8'>
+        <h3 className='text-3xl antialiased font-extrabold sm:text-5xl md:text-6xl text-orange'>
+          Rent a Bike
+        </h3>
+        <LazyLoadImage
+          src='../images/Home.png'
+          alt='Bike rental hero'
+          className='object-contain w-full h-auto max-w-3xl rounded-lg shadow-sm img-lazy'
+          placeholderSrc='https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png'
+          effect='blur'
+        />
+        <Link
+          className='inline-flex items-center justify-center px-4 py-2 mt-1 text-sm font-semibold text-white transition-colors rounded sm:px-6 sm:py-3 sm:text-base bg-slate-900 hover:bg-orange'
+          to='/bikerentsection'
+        >
+          Bike Showcase
+        </Link>
+      </div>
     </section>
   );
 };

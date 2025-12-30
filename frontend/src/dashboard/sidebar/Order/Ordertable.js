@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Spinner from "../../../Helper/Spinner";
+import { Select } from "antd";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Spinner from "../../../Helper/Spinner";
 import {
   AllOrder,
   updateStatus,
 } from "../../../redux/features/Order/orderAction";
-import { Select } from "antd";
 const { Option } = Select;
 
 const Ordertable = ({ color }) => {
@@ -23,7 +23,6 @@ const Ordertable = ({ color }) => {
     dispatch(AllOrder());
   }, []);
   const { loading, error, orders } = useSelector((state) => state.order);
-  console.log(orders, "ordertable");
   const handleChange = (orderId, value) => {
     let data = {
       orderId: orderId,
