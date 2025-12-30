@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Formik, ErrorMessage } from "formik";
-import { ValidateBikeAdd } from "../../../common/Validation";
-import AddEditWrapper from "../../common/AddEditWrapper";
+import { ErrorMessage, Formik } from "formik";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { ValidateBikeAdd } from "../../../common/Validation";
 import Error from "../../../Helper/Error";
 import Spinner from "../../../Helper/Spinner";
-import toast from "react-hot-toast";
 import {
-  getBikeById,
   editBikeById,
+  getBikeById,
 } from "../../../redux/features/Bikes/bikeAction";
 import { clearFields } from "../../../redux/features/Bikes/bikeSlice";
-import { useParams } from "react-router-dom";
 import { CategoryAll } from "../../../redux/features/Category/categoryAction";
-const base_url = `http://localhost:5000`;
+import AddEditWrapper from "../../common/AddEditWrapper";
+const base_url = process.env.REACT_APP_API_URL;
 
 const EditBike = () => {
   const [selectedImage, setSelectedImage] = useState();

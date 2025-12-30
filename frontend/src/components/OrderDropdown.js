@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Layout from "./Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { GetOrder } from "../redux/features/Order/orderAction";
+import Layout from "./Layout";
 
 const OrderDropdown = ({ color }) => {
   const dispatch = useDispatch();
@@ -11,12 +11,12 @@ const OrderDropdown = ({ color }) => {
   const { userOrders } = useSelector((state) => state.order);
   return (
     <Layout title={"BikeBook : Your Orders"}>
-      <div className='flex items-center justify-center'>
+      <div className='flex items-center justify-center px-4 pt-2'>
         <h1 className='font-serif text-2xl font-bold'>Your Orders</h1>
       </div>
-      <div className='flex items-center justify-center w-full mt-3'>
-        <div style={{ maxHeight: "300px", overflowY: "auto" }}>
-          <table className='items-center w-full bg-white border-collapse'>
+      <div className='flex items-center justify-center w-full px-4 mt-4'>
+        <div className='w-full max-w-6xl overflow-x-auto bg-white border border-gray-200 rounded-lg shadow-sm' style={{ maxHeight: "360px" }}>
+          <table className='min-w-[720px] w-full bg-white border-collapse'>
             <thead>
               <tr>
                 <th
@@ -197,7 +197,7 @@ const OrderDropdown = ({ color }) => {
                 })
               ) : (
                 <tr className='text-center border'>
-                  <td colSpan={5} className='p-3 font-bold text-red-500'>
+                  <td colSpan={8} className='p-3 font-bold text-red-500'>
                     No Data Found!!
                   </td>
                 </tr>

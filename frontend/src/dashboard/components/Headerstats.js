@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import CardStats from "./CardStats";
 import { useDispatch, useSelector } from "react-redux";
 import { BikeAll } from "../../redux/features/Bikes/bikeAction";
 import { userAll } from "../../redux/features/User/authAction";
+import CardStats from "./CardStats";
 const Headerstats = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -62,18 +62,6 @@ const Headerstats = () => {
                   statDescripiron='Since yesterday'
                   statIconName='fas fa-users'
                   statIconColor='bg-pink-500'
-                />
-              </div>
-              <div className='w-full px-4 lg:w-6/12 xl:w-3/12'>
-                <CardStats
-                  statSubtitle='Rented Bikes'
-                  statTitle='3'
-                  statArrow='up'
-                  statPercent='12'
-                  statPercentColor='text-emerald-500'
-                  statDescripiron='Since last month'
-                  statIconName='fas fa-percent'
-                  statIconColor='bg-teal-400'
                 />
               </div>
             </div>

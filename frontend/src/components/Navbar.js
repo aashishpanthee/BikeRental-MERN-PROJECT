@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
-import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { logout } from "../redux/features/User/authSlice";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import React, { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { LoggedInUser } from "../redux/features/User/authAction";
+import { logout } from "../redux/features/User/authSlice";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -34,19 +32,18 @@ export default function Navbar({ scrolled }) {
   return (
     <Disclosure
       as='nav'
-      className={`fixed top-0 w-full z-10 ${
-        scrolled
+      className={`fixed top-0 w-full z-10 ${scrolled
           ? "bg-teal-100 opacity-100 transition-all duration-300"
           : "bg-slate-50"
-      }`}
+        }`}
     >
       {({ open }) => (
         <>
-          <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
+          <div className='px-4 mx-auto max-w-7xl sm:px-6 lg:px-8'>
             <div className='relative flex items-center justify-between h-16'>
               <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
                 {/* Mobile menu button*/}
-                <Disclosure.Button className='inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
+                <Disclosure.Button className='inline-flex items-center justify-center p-2 text-gray-600 transition-colors rounded-md hover:bg-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange'>
                   <span className='sr-only'>Open main menu</span>
                   {open ? (
                     <XMarkIcon className='block w-6 h-6' aria-hidden='true' />
@@ -56,26 +53,21 @@ export default function Navbar({ scrolled }) {
                 </Disclosure.Button>
               </div>
               <div className='flex items-center justify-center flex-1 sm:items-stretch sm:justify-start'>
-                <Link className='flex items-center flex-shrink-0' to='/'>
+                <Link className='flex items-center flex-shrink-0 ml-10 sm:ml-0' to='/'>
                   <img
-                    className='block w-auto h-8 lg:hidden'
+                    className='w-auto h-8'
                     src='../images/navbarlogo.png'
-                    alt='Your Company'
-                  />
-                  <img
-                    className='hidden w-auto h-8 lg:block'
-                    src='../images/navbarlogo.png'
-                    alt='Your Company'
+                    alt='BikeBook Logo'
                   />
                 </Link>
                 <div className='hidden sm:flex sm:ml-6'>
-                  <div className='flex space-x-4'>
+                  <div className='flex space-x-2 lg:space-x-4'>
                     {navigation.map((item, index) => (
                       <Link
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          " hover:bg-orange hover:text-white text-semibold",
+                          " hover:bg-orange hover:text-white transition-colors",
                           "rounded-md px-3 py-2 text-sm font-bold text-slate-900"
                         )}
                       >
@@ -93,17 +85,17 @@ export default function Navbar({ scrolled }) {
                       <span className=''>Your Cart</span>
                     </span>
                   </Link> */}
-                  <Menu as='div' className='text-left '>
+                  <Menu as='div' className='relative text-left'>
                     <div>
-                      <Menu.Button className='inline-flex items-center justify-center w-full px-4 py-2 text-xs font-medium rounded-md sm:text-base text-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
+                      <Menu.Button className='inline-flex items-center justify-center w-full px-2 py-2 text-xs font-medium transition-colors rounded-md sm:text-sm sm:px-4 text-orange hover:bg-orange hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-orange focus-visible:ring-opacity-75'>
                         <img
                           src='../ashish.jpg'
-                          alt=''
-                          className='w-10 h-10 mr-2 rounded-full'
+                          alt='User avatar'
+                          className='object-cover w-8 h-8 mr-1 rounded-full sm:w-10 sm:h-10 sm:mr-2'
                         />
-                        {userInfo.name}
+                        <span className='hidden sm:inline'>{userInfo.name}</span>
                         <ChevronDownIcon
-                          className='w-5 h-5 ml-2 -mr-1 text-orange'
+                          className='w-4 h-4 ml-1 -mr-1 sm:w-5 sm:h-5 sm:ml-2'
                           aria-hidden='true'
                         />
                       </Menu.Button>
@@ -124,11 +116,10 @@ export default function Navbar({ scrolled }) {
                               {({ active }) => (
                                 <Link
                                   to='/dashboard'
-                                  className={`${
-                                    active
+                                  className={`${active
                                       ? "bg-orange text-white"
                                       : "text-gray-900"
-                                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                 >
                                   Dashboard
                                 </Link>
@@ -141,11 +132,10 @@ export default function Navbar({ scrolled }) {
                             {({ active }) => (
                               <Link
                                 to='/orderdropdown'
-                                className={`${
-                                  active
+                                className={`${active
                                     ? "bg-orange text-white"
                                     : "text-gray-900"
-                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                               >
                                 Your orders
                               </Link>
@@ -157,11 +147,10 @@ export default function Navbar({ scrolled }) {
                             {({ active }) => (
                               <button
                                 onClick={handleLogout}
-                                className={`${
-                                  active
+                                className={`${active
                                     ? "bg-orange text-white"
                                     : "text-gray-900"
-                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                               >
                                 Logout
                               </button>
@@ -173,15 +162,15 @@ export default function Navbar({ scrolled }) {
                   </Menu>
                 </div>
               ) : (
-                <div className='space-x-2'>
+                <div className='flex items-center gap-2'>
                   <Link
-                    className='px-3 py-2 text-sm font-medium text-black rounded-md hover:bg-black hover:text-white'
+                    className='px-2 py-2 text-xs font-medium text-black transition-colors rounded-md sm:px-3 sm:text-sm hover:bg-black hover:text-white'
                     to='/login'
                   >
                     Login
                   </Link>
                   <Link
-                    className='px-3 py-2 text-sm font-medium text-white rounded-md text-gray-1 00 bg-orange hover:bg-black'
+                    className='px-2 py-2 text-xs font-medium text-white transition-colors rounded-md sm:px-3 sm:text-sm bg-orange hover:bg-black'
                     to='/signup'
                   >
                     Sign up
@@ -193,7 +182,7 @@ export default function Navbar({ scrolled }) {
             </div>
           </div>
 
-          <Disclosure.Panel className='sm:hidden'>
+          <Disclosure.Panel className='border-t border-gray-200 sm:hidden'>
             <div className='px-2 pt-2 pb-3 space-y-1'>
               {navigation.map((item) => (
                 <Disclosure.Button
@@ -201,12 +190,9 @@ export default function Navbar({ scrolled }) {
                   as='a'
                   href={item.href}
                   className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-700 hover:bg-gray-700 hover:text-white",
+                    "text-gray-700 hover:bg-orange hover:text-white transition-colors",
                     "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>

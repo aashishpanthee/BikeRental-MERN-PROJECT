@@ -1,11 +1,11 @@
+import { FloatButton } from "antd";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./dashboard/Dashboard";
-import Private from "./Helper/Private";
-import { FloatButton } from "antd";
+import "./App.css";
 import App1 from "./components/App1";
 import Loading from "./components/Loading";
-import "./App.css";
+import Dashboard from "./dashboard/Dashboard";
+import Private from "./Helper/Private";
 
 function App() {
   const [loading, setLoading] = useState(true);

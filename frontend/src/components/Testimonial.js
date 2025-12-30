@@ -1,5 +1,5 @@
-import React from "react";
 import { Carousel } from "antd";
+import React from "react";
 const Testimonial = () => {
   const array1 = [
     {
@@ -63,32 +63,32 @@ const Testimonial = () => {
     },
   ];
   return (
-    <section className='text-gray-600 body-font'>
-      <div className='container px-5 py-8 mx-auto'>
-        <h2 className='flex justify-center w-full mb-8 text-xl font-medium tracking-tight sm:text-3xl sm:font-extralarge text-slate-900 md:mb-10 sm:text-center'>
+    <section className='text-gray-600 body-font bg-gray-50'>
+      <div className='container px-5 py-10 mx-auto sm:py-14'>
+        <h2 className='flex justify-center w-full mb-8 text-2xl font-semibold tracking-tight text-center text-slate-900 sm:text-3xl md:text-4xl md:mb-10'>
           Our Testimonials
         </h2>
-        <div className='flex-col w-full gap-2 sm:flex sm:flex-row'>
+        <div className='grid max-w-6xl grid-cols-1 gap-6 mx-auto sm:grid-cols-2 lg:grid-cols-3'>
           <Carousel
             autoplay={true}
             dotPosition='top'
-            className='m-auto sm:w-[26rem] w-[20rem] '
+            className='w-full'
           >
             {array1.map((array, index) => {
               return (
                 <div
-                  className='px-2 py-6 mb-6 border-2 rounded-md sm:px-3 sm:gap-2 lg:w-1/3 lg:mb-0'
+                  className='px-4 py-6 bg-white border border-gray-200 rounded-lg shadow-sm'
                   key={index}
                 >
-                  <div className='flex flex-col items-center justify-center h-full text-center'>
+                  <div className='flex flex-col items-center justify-center h-full min-h-[280px] text-center'>
                     <img
-                      alt='testimonial'
-                      className='inline-block object-cover object-center w-20 h-20 mb-8 bg-gray-100 border-2 border-gray-200 rounded-full'
+                      alt={`${array.name} testimonial`}
+                      className='inline-block object-cover object-center w-20 h-20 mb-4 bg-gray-100 border-2 border-gray-200 rounded-full'
                       src={array.image}
                     />
-                    <p className='leading-relaxed'>{array.review}</p>
-                    <span className='inline-block w-10 h-1 mt-6 mb-4 rounded bg-orange'></span>
-                    <h2 className='text-sm font-medium tracking-wider text-gray-900 title-font'>
+                    <p className='mb-4 text-sm leading-relaxed sm:text-base'>{array.review}</p>
+                    <span className='inline-block w-10 h-1 mb-3 rounded bg-orange'></span>
+                    <h2 className='text-sm font-semibold tracking-wider text-gray-900 title-font'>
                       {array.name}
                     </h2>
                   </div>
@@ -98,24 +98,24 @@ const Testimonial = () => {
           </Carousel>
           <Carousel
             autoplay={true}
-            dotPosition='left'
-            className='m-auto sm:w-[26rem] w-[20rem]'
+            dotPosition='top'
+            className='w-full'
           >
             {array2.map((array, index) => {
               return (
                 <div
-                  className='gap-2 px-3 py-6 mb-6 border-2 rounded-md lg:w-1/3 lg:mb-0'
+                  className='px-4 py-6 bg-white border border-gray-200 rounded-lg shadow-sm'
                   key={index}
                 >
-                  <div className='flex flex-col items-center justify-center h-full text-center'>
+                  <div className='flex flex-col items-center justify-center h-full min-h-[280px] text-center'>
                     <img
-                      alt='testimonial'
-                      className='inline-block object-cover object-center w-20 h-20 mb-8 bg-gray-100 border-2 border-gray-200 rounded-full'
+                      alt={`${array.name} testimonial`}
+                      className='inline-block object-cover object-center w-20 h-20 mb-4 bg-gray-100 border-2 border-gray-200 rounded-full'
                       src={array.image}
                     />
-                    <p className='leading-relaxed'>{array.review}</p>
-                    <span className='inline-block w-10 h-1 mt-6 mb-4 rounded bg-orange'></span>
-                    <h2 className='text-sm font-medium tracking-wider text-gray-900 title-font'>
+                    <p className='mb-4 text-sm leading-relaxed sm:text-base'>{array.review}</p>
+                    <span className='inline-block w-10 h-1 mb-3 rounded bg-orange'></span>
+                    <h2 className='text-sm font-semibold tracking-wider text-gray-900 title-font'>
                       {array.name}
                     </h2>
                   </div>
@@ -125,24 +125,24 @@ const Testimonial = () => {
           </Carousel>
           <Carousel
             autoplay={true}
-            dotPosition='buttom'
-            className='m-auto sm:w-[26rem] w-[20rem]'
+            dotPosition='top'
+            className='w-full'
           >
             {array3.map((array, index) => {
               return (
                 <div
-                  className='gap-2 px-3 py-6 mb-6 border-2 rounded-md lg:w-1/3 lg:mb-0'
+                  className='px-4 py-6 bg-white border border-gray-200 rounded-lg shadow-sm'
                   key={index}
                 >
-                  <div className='flex flex-col items-center justify-center h-full text-center'>
+                  <div className='flex flex-col items-center justify-center h-full min-h-[280px] text-center'>
                     <img
-                      alt='testimonial'
-                      className='inline-block object-cover object-center w-20 h-20 mb-8 bg-gray-100 border-2 border-gray-200 rounded-full'
+                      alt={`${array.name} testimonial`}
+                      className='inline-block object-cover object-center w-20 h-20 mb-4 bg-gray-100 border-2 border-gray-200 rounded-full'
                       src={array.image}
                     />
-                    <p className='leading-relaxed'>{array.review}</p>
-                    <span className='inline-block w-10 h-1 mt-6 mb-4 rounded bg-orange'></span>
-                    <h2 className='text-sm font-medium tracking-wider text-gray-900 title-font'>
+                    <p className='mb-4 text-sm leading-relaxed sm:text-base'>{array.review}</p>
+                    <span className='inline-block w-10 h-1 mb-3 rounded bg-orange'></span>
+                    <h2 className='text-sm font-semibold tracking-wider text-gray-900 title-font'>
                       {array.name}
                     </h2>
                   </div>

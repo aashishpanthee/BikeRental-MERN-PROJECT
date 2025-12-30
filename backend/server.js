@@ -1,11 +1,11 @@
-import express from "express";
 import colors from "colors";
 import dotenv from "dotenv";
+import express from "express";
 import morgan from "morgan";
 import ConnectDb from "./config/ConnectDb.js";
 import authRoutes from "./routes/authRoute.js";
-import categoryRoutes from "./routes/categoryRoute.js";
 import bikeRoutes from "./routes/bikeRoute.js";
+import categoryRoutes from "./routes/categoryRoute.js";
 import orderRoutes from "./routes/orderRoute.js";
 
 import cors from "cors";
@@ -36,11 +36,12 @@ app.get("/", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5001;
+const MODE = process.env.PRODUCTION_MODE || "development";
 
 // run listen
 app.listen(PORT, () => {
   console.log(
-    `Server running on mode ${process.env.DEV_MODE} on ${PORT}`.bgWhite.black
+    `Server running on mode ${MODE} on ${PORT}`.bgWhite.black
   );
 });

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { BikeAll, FilterBikes } from "../redux/features/Bikes/bikeAction";
-import { CategoryAll } from "../redux/features/Category/categoryAction";
-import { addToCart } from "../redux/features/Cart/cartSlice";
 import { Checkbox, Radio } from "antd";
-import Layout from "./Layout";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Prices } from "../Helper/Prices";
+import { BikeAll, FilterBikes } from "../redux/features/Bikes/bikeAction";
+import { addToCart } from "../redux/features/Cart/cartSlice";
+import { CategoryAll } from "../redux/features/Category/categoryAction";
+import Layout from "./Layout";
 
 const BikeRentSection = () => {
   const [checked, setChecked] = useState([]);
@@ -33,7 +33,7 @@ const BikeRentSection = () => {
 
   const { bikes } = useSelector((state) => state.bike);
   const { categories } = useSelector((state) => state.category);
-  const base_url = "http://localhost:5000";
+  const base_url = process.env.REACT_APP_API_URL;
   const handleCart = (bike) => {
     dispatch(addToCart(bike));
   };
@@ -49,8 +49,8 @@ const BikeRentSection = () => {
 
   return (
     <Layout title={"Bike rental made easy"}>
-      <section className='flex h-full'>
-        <div className='w-1/5 border-r-2 border-orange'>
+      <section className='flex flex-col h-full gap-6 md:flex-row'>
+        <div className='w-full pb-4 border-r-0 md:w-1/4 lg:w-1/5 md:border-r-2 border-orange md:pb-0'>
           <div className='container px-5 mx-auto mt-3'>
             <h1 className='text-xl font-bold text-left'>Filter by Category</h1>
             <div className='flex flex-col gap-2 mt-2 ml-2 text-base font-semibold'>
@@ -87,16 +87,16 @@ const BikeRentSection = () => {
             Clear Filter
           </button>
         </div>
-        <div className='w-4/5'>
+        <div className='flex-1 w-full'>
           {" "}
           <div className='container px-5 mx-auto'>
             <div className='flex flex-wrap -m-4'>
               {bikes && bikes.length !== 0 ? (
                 bikes.map((bike) => (
-                  <div className='w-full p-4 lg:w-1/4 md:w-1/2' key={bike._id}>
-                    <div className='relative block overflow-hidden rounded h-50'>
+                  <div className='w-full p-4 sm:w-1/2 lg:w-1/3 xl:w-1/4' key={bike._id}>
+                    <div className='relative block overflow-hidden rounded shadow-sm bg-gray-100 aspect-[4/3]'>
                       <img
-                        alt='ecommerce'
+                        alt={`${bike.name} bike`}
                         className='object-cover object-center w-full h-full'
                         src={`${base_url}/api/v1/bike/bike-photo/${bike._id}`}
                       />
@@ -108,12 +108,6 @@ const BikeRentSection = () => {
                       <p className='mt-1'>Price per day: {bike.price}</p>
                     </div>
                     <div className='flex justify-between w-full h-10 mt-3'>
-                      <button
-                        className='px-4 py-1 text-white bg-blue-500 border-0 rounded focus:outline-none hover:bg-black'
-                        onClick={() => handleCart(bike)}
-                      >
-                        Add to cart
-                      </button>
                       <Link
                         className='flex items-center px-4 py-1 text-white border-0 rounded bg-orange focus:outline-none hover:bg-black'
                         to={`/order/${bike.slug}`}

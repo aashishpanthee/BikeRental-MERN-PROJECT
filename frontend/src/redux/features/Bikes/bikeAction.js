@@ -8,7 +8,6 @@ export const addBike = createAsyncThunk(
       const data = await Http.post("/api/v1/bike/add-bike", bikesData);
       return data.data;
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {

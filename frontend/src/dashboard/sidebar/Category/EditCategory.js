@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Formik, ErrorMessage } from "formik";
-import { ValidateCategoryAdd } from "../../../common/Validation";
-import AddEditWrapper from "../../common/AddEditWrapper";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Spinner from "../../../Helper/Spinner";
-import Error from "../../../Helper/Error";
+import { ErrorMessage, Formik } from "formik";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { ValidateCategoryAdd } from "../../../common/Validation";
+import Error from "../../../Helper/Error";
+import Spinner from "../../../Helper/Spinner";
 import {
-  getCategoryById,
   editCategoryById,
+  getCategoryById,
 } from "../../../redux/features/Category/categoryAction";
 import { clearFields } from "../../../redux/features/Category/categorySlice";
-import { useParams } from "react-router-dom";
+import AddEditWrapper from "../../common/AddEditWrapper";
 
 const EditCategory = () => {
   let { id } = useParams();
@@ -57,7 +56,6 @@ const EditCategory = () => {
                 name: values.name,
               };
               const data = await dispatch(editCategoryById(datas));
-              console.log(data);
               if (!data.error) {
                 toast.success(`Category updated successfully`);
               } else {

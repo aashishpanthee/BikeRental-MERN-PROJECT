@@ -1,10 +1,10 @@
+import { ErrorMessage, Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik, ErrorMessage } from "formik";
+import { Link, useNavigate } from "react-router-dom";
 import { ValidateForgotPassword } from "../common/Validation";
-import Spinner from "../Helper/Spinner";
 import Error from "../Helper/Error";
+import Spinner from "../Helper/Spinner";
 import { forgotPassword } from "../redux/features/User/authAction";
 import { clearFields } from "../redux/features/User/authSlice";
 import Layout from "./Layout";
@@ -13,7 +13,6 @@ const ForgotPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, userInfo, error } = useSelector((state) => state.auth);
-  console.log(error);
   useEffect(() => {
     window.scrollTo({
       top: 0,

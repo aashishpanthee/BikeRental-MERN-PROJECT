@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { ErrorMessage, Formik } from "formik";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Formik, ErrorMessage } from "formik";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   editUserById,
   getUserById,
 } from "../../../redux/features/User/authActions";
 import { clearFields } from "../../../redux/features/User/authSlice";
+import AddEditWrapper from "../../common/AddEditWrapper";
 import { ValidateEditUser } from "../../Common/Validation";
 import Spinner from "../../Helper/Spinner";
-import { useParams } from "react-router-dom";
-import AddEditWrapper from "../../common/AddEditWrapper";
-const base_url = "http://localhost:5000/";
+const base_url = process.env.REACT_APP_API_URL;
 
 function EditUser() {
   let { id } = useParams();

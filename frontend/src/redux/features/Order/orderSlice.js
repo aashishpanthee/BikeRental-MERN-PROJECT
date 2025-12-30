@@ -72,7 +72,6 @@ const orderSlice = createSlice({
     [updateStatus.fulfilled]: (state, { payload }) => {
       state.loading = false;
       // state.orders = payload;
-      // console.log(state.orders, "hello");
     },
     [updateStatus.rejected]: (state, { payload }) => {
       state.loading = false;

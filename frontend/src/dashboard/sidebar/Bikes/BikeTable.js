@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { BikeAll } from "../../../redux/features/Bikes/bikeAction";
 import { DeleteBike } from "./DeleteBike";
 
@@ -8,13 +8,12 @@ const BikeTable = ({ color }) => {
   const [showModal, setShowModal] = useState(false);
   const [bikeId, setBikeId] = useState();
   const dispatch = useDispatch();
-  const base_url = `http://localhost:5000`;
+  const base_url = process.env.REACT_APP_API_URL;
   useEffect(() => {
     dispatch(BikeAll());
   }, []);
 
   const { bikes } = useSelector((state) => state.bike);
-  console.log(bikes, "hehe");
   const handleDeleteClick = (id) => {
     setBikeId(id);
     setShowModal(true);
@@ -98,9 +97,8 @@ const BikeTable = ({ color }) => {
                   <td className='items-center p-4 px-6 text-left align-middle border-t-0 border-l-0 border-r-0 text-md whitespace-nowrap'>
                     <div className='flex items-center gap-3'>
                       <img
-                        src={`${base_url}/api/v1/bike/bike-photo/${
-                          bike._id
-                        }?timestamp=${Date.now()}`}
+                        src={`${base_url}/api/v1/bike/bike-photo/${bike._id
+                          }?timestamp=${Date.now()}`}
                         className='w-12 h-12 bg-white border rounded-full'
                         alt={bike.name}
                       ></img>
