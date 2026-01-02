@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Formik, ErrorMessage } from "formik";
-import { ValidateBikeAdd } from "../../../common/Validation";
-import AddEditWrapper from "../../common/AddEditWrapper";
+import { ErrorMessage, Formik } from "formik";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ValidateBikeAdd } from "../../../common/Validation";
+import Error from "../../../Helper/Error";
+import Spinner from "../../../Helper/Spinner";
 import { addBike } from "../../../redux/features/Bikes/bikeAction";
 import { clearFields } from "../../../redux/features/Bikes/bikeSlice";
 import { CategoryAll } from "../../../redux/features/Category/categoryAction";
-import Spinner from "../../../Helper/Spinner";
-import toast from "react-hot-toast";
-import Error from "../../../Helper/Error";
+import AddEditWrapper from "../../common/AddEditWrapper";
 
 const AddBike = () => {
   const dispatch = useDispatch();
@@ -121,7 +121,7 @@ const AddBike = () => {
                     Price Per Day
                   </label>
                   <input
-                    type='string'
+                    type='number'
                     className='w-full px-3 py-3 text-sm transition-all duration-150 ease-linear bg-white border-0 rounded shadow placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring'
                     name='price'
                     onChange={props.handleChange}
